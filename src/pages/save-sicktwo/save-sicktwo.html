@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>SaveSick Grade2</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="savesicktwo">
+
+ 
+  <ion-item>
+    <ion-label>เลือกเด็กนักเรียน</ion-label>
+    <ion-select [(ngModel)]="student_id" multiple="true" >
+      <ion-option *ngFor="let item of student" value="{{item.student_id}}" >{{item.student_name}} {{item.student_surname}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>วันที่ป่วย : </ion-label>
+    <ion-datetime displayFormat="DD/MMMM/YYYY" [(ngModel)]="sick_date"></ion-datetime>
+  </ion-item>
+
+  
+  <ion-item>
+    <ion-label>ปีการศึกษา</ion-label>
+    <ion-select [(ngModel)]="term_id" multiple="true" >
+      <ion-option *ngFor="let term of term" value="{{term.term_id}}" >{{term.term_num}}/{{term.term_years}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>สาเหตุการป่วย</ion-label>
+    <ion-input type="text" [(ngModel)]="sick_description" placeholder="กรอกอาการป่วย"></ion-input>
+  </ion-item>
+
+     
+      
+      <button ion-button block (click)="postJson(student_id,sick_date,term_id,sick_description)"  >บันทึก</button>
+
+</ion-content>

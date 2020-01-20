@@ -1,0 +1,48 @@
+<!--
+  Generated template for the RemindcardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Remindcard</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="remindcard">
+  <ion-item>
+    <ion-label>เลือกนักเรียน</ion-label>
+    <ion-select [(ngModel)]="card_id" multiple="true">
+      <ion-option *ngFor="let student of student" value="{{student.card_id}}">{{student.student_name}}
+        {{student.student_surname}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngFor="let student  student">
+    <ion-label>QrId</ion-label>
+    <ion-input [(ngModel)]="qrId" value="{{student.qrId}}">{{student.qrId}}</ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>ปีการศึกษา</ion-label>
+    <ion-select [(ngModel)]="term_id" multiple="true">
+      <ion-option *ngFor="let term of term" value="{{term.term_id}}">{{term.term_num}}/{{term.term_years}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Date</ion-label>
+      {{date}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Time</ion-label>
+      {{time}}
+    </ion-card-content>
+  </ion-card>
+  <button ion-button round (click)="postJsonData(card_id, term_id, date,time,qrId)">บันทึก</button>
+</ion-content>

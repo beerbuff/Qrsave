@@ -1,0 +1,56 @@
+<!--
+  Generated template for the LeaveSickPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>LeaveSick</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="leavesick">
+
+  <ion-item>
+    <ion-label>เลือกเด็กนักเรียน</ion-label>
+    <ion-select [(ngModel)]="student_id" multiple="true" >
+      <ion-option *ngFor="let item of student" value="{{item.student_id}}" >{{item.student_name}} {{item.student_surname}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+<ion-item>
+  <ion-label>สาเหตุการลาป่วย</ion-label>
+  <ion-input type="text" [(ngModel)]="leave_description" placeholder="กรอกอาการป่วย"></ion-input>
+</ion-item>
+
+
+<ion-item>
+  <ion-label>วันที่เริ่มลา : </ion-label>
+  <ion-datetime displayFormat="DD/MMMM/YYYY" [(ngModel)]="leave_startdate"></ion-datetime>
+</ion-item>
+
+
+
+<ion-item>
+  <ion-label>สิ้นสุดวันลา : </ion-label>
+  <ion-datetime displayFormat="DD/MMMM/YYYY" [(ngModel)]="leave_enddate"></ion-datetime>
+</ion-item>
+
+<ion-item>
+  <ion-label >จำนวนวัน</ion-label>
+  <ion-input type="" [(ngModel)]="days" ></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>ปีการศึกษา</ion-label>
+  <ion-select [(ngModel)]="term_id" multiple="true" >
+    <ion-option *ngFor="let term of term" value="{{term.term_id}}" >{{term.term_num}}/{{term.term_years}}</ion-option>
+  </ion-select>
+</ion-item>
+
+<button ion-button block (click)="postJson(student_id, leave_description, leave_startdate, leave_enddate, days, term_id)">บันทึก</button>
+
+
+
+</ion-content>

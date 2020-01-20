@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding id="qrscan1">
+  <button ion-button block (click)="barcode(card_id)">Scan QR Code</button>
+
+  <ion-card>
+    <ion-card-header>
+      Card id
+    </ion-card-header>
+    <ion-card-content>
+      {{card_id}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let item of studentArray">
+    <ion-item>
+      {{item.student_name}}
+      {{item.student_surname}}
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item hidden *ngFor="let item of studentArray">
+      <ion-label>QrId</ion-label>
+      <ion-input [(ngModel)]="qrId" value="{{item.qrId}}" readonly></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-label>ปีการศึกษา</ion-label>
+      <ion-select [(ngModel)]="term_id" multiple="true">
+        <ion-option *ngFor="let term of term" value="{{term.term_id}}">{{term.term_num}}/{{term.term_years}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Date</ion-label>
+      {{date}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Time</ion-label>
+      {{time}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-label class="my-label" (click)="remind()">กรณีลืมบัตรและโทรศัพท์</ion-label>
+  <br>
+  <br>
+  <button ion-button round (click)="postJsonData(card_id, term_id, date,time,qrId)">บันทึก</button>
+</ion-content>
